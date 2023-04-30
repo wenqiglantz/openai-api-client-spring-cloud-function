@@ -1,4 +1,13 @@
-output "rest_api_url" {
-  #value = "${aws_api_gateway_deployment.rest_api_deployment.invoke_url}${aws_api_gateway_stage.rest_api_stage.stage_name}${aws_api_gateway_resource.rest_api_resource.path}"
-  value = aws_api_gateway_deployment.rest_api_deployment.invoke_url
+output "lambda_name" {
+  value       = module.lambda.lambda_name
+  description = "Lambda function name"
+}
+
+output "lambda_arn" {
+  value       = module.lambda.lambda_arn
+  description = "Lambda function ARN name"
+}
+
+output "api_url" {
+  value = module.apigatewayv2.base_url
 }
