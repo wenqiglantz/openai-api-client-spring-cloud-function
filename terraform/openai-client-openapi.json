@@ -1,7 +1,7 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "openai-api-chat",
+    "title" : "openai-api-client",
     "version" : "2023-04-30 00:45:35UTC"
   },
   "paths" : {
