@@ -9,6 +9,24 @@ variable "open_api_spec" {
   default     = ""
 }
 
+variable "resource_name_prefix" {
+  type        = string
+  description = "Resource name prefix, used in role name"
+  default     = ""
+}
+
+variable "lambda_code_path" {
+  type        = string
+  description = "Lambda code path"
+  default     = ""
+}
+
+variable "lambda_archive_path" {
+  type        = string
+  description = "Lambda code archive path"
+  default     = ""
+}
+
 variable "lambda_function" {
   description = "Lambda function details"
   type        = map(any)
@@ -20,6 +38,12 @@ variable "lambda_function" {
     memory_size            = "128"
     function_name_variable = "chat"
   }
+}
+
+variable "lambda_log_retention_in_days" {
+  description = "Log retention in days"
+  type        = number
+  default     = 7
 }
 
 variable "http_api_gateway_name" {

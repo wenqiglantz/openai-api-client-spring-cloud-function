@@ -18,31 +18,13 @@ data "aws_caller_identity" "current" {}
 # lambda_function
 #######################################
 module "lambda" {
-  source   = "terraform-aws-modules/lambda/aws"
+  source = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/lambda-java?ref=main"
 
-  function_name           = var.lambda_function.function_name
-  runtime                 = var.lambda_function.runtime
-  handler                 = var.lambda_function.handler
-  create_package          = false
-  snap_start              = true
-  publish                 = true
-  ignore_source_code_hash = true
-
-  create_current_version_allowed_triggers = false
-  #  allowed_triggers                        = {
-  #    api-gateway = {
-  #      service    = "apigateway"
-  #      source_arn = "${aws_api_gateway_rest_api.rest_api.execution_arn}/*/*/*"
-  #    }
-  #  }
-
-  environment_variables = {
-    SPRING_CLOUD_FUNCTION_DEFINITION = var.lambda_function.function_name_variable
-  }
-  ephemeral_storage_size = var.lambda_function.ephemeral_storage
-  memory_size            = var.lambda_function.memory_size
-  package_type           = "Zip"
-  timeout                = "15"
+  lambda_code_path             = var.lambda_code_path
+  lambda_archive_path          = var.lambda_archive_path
+  resource_name_prefix         = var.resource_name_prefix
+  lambda_function              = var.lambda_function
+  lambda_log_retention_in_days = var.lambda_log_retention_in_days
 }
 
 #######################################
