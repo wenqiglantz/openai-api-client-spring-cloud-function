@@ -18,6 +18,7 @@ variable "s3_object_key" {
 variable "open_api_spec" {
   type        = any
   description = "OpenAPI Spec"
+  default     = ""
 }
 
 variable "lambda_functions" {
