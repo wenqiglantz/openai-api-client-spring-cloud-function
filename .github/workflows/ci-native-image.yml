@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@248ae51c2e8cc9622ecf50685c8bf7150c6e8813
+        uses: step-security/harden-runner@6b3083af2869dc3314a0257a42f4af696cc79ba3
         with:
           egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
 
@@ -30,12 +30,12 @@ jobs:
         uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@05b148adc31e091bafbaf404f745055d4d3bc9d2
+        uses: aws-actions/configure-aws-credentials@e1e17a757e536f70e52b5a12b2e8d1d1c60e04ef
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
           aws-region: ${{ secrets.AWS_REGION }}
           
-      - uses: graalvm/setup-graalvm@01b9840538b867061986ea406d1b79c91a701d17
+      - uses: graalvm/setup-graalvm@1478c743ed947e10f0af6ed9eea34f564dd5bf61
         with:
           version: 'latest'
           java-version: '17'
@@ -60,7 +60,7 @@ jobs:
         run: echo "PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
 
       - name: Scan ECR image with Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@9ab158e8597f3b310480b9a69402b419bc03dbd5
+        uses: aquasecurity/trivy-action@e5f43133f6e8736992c9f3c1b3296e24b37e17f2
         with:
           image-ref: ${{ secrets.ECR_REPOSITORY_NAME }}:latest
           format: 'table'
