@@ -19,7 +19,7 @@ import org.springframework.stereotype.Indexed;
 @Slf4j
 public class OpenAIClientConfig {
 
-    static final String API_KEY = "API-KEY";
+    static final String API_KEY = "API_KEY";
 
     @Value("${openai-service.http-client.read-timeout}")
     private int readTimeout;

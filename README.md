@@ -13,6 +13,6 @@ mvn clean package
 ### How to access the running app?
 Check the output for your Terraform IaC provisioning, the HTTP API Gateway provisioning should have output the invoker URL
 
-Use Postman, you can launch the app by navigating to these two endpoints:
+Use Postman, you can launch the app by navigating to endpoint:
 * <invoker-url>/chat
 

@@ -16,7 +16,7 @@
           "payloadFormatVersion" : "2.0",
           "type" : "aws_proxy",
           "httpMethod" : "POST",
-          "uri" : "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${aws_account_id}:function:chat-java17-snapstart-latest:1/invocations",
+          "uri" : "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${aws_account_id}:function:chat:1/invocations",
           "connectionType" : "INTERNET",
           "timeoutInMillis" : 30000
         }
