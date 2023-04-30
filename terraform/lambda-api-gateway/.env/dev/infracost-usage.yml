@@ -1,0 +1,17 @@
+# You can use this file to define resource usage estimates for Infracost to use when calculating
+# the cost of usage-based resource, such as AWS S3 or Lambda.
+# `infracost breakdown --usage-file infracost-usage.yml [other flags]`
+# See https://infracost.io/usage-file/ for docs
+version: 0.1
+resource_type_default_usage:
+
+  aws_lambda_function:
+    monthly_requests: 1000 # Monthly requests to the Lambda function.
+    request_duration_ms: 1000 # Average duration of each request in milliseconds.
+
+  aws_cloudwatch_log_group:
+    storage_gb: 1                   # Total data stored by CloudWatch logs in GB.
+    monthly_data_ingested_gb: 1      # Monthly data ingested by CloudWatch logs in GB.
+    monthly_data_scanned_gb: 1     # Monthly data scanned by CloudWatch logs insights in GB.
+
+resource_usage:

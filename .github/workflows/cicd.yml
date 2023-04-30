@@ -1,0 +1,62 @@
+name: CI/CD workflow to build and deploy to Lambda
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run the workflow against'
+        type: environment
+        required: true
+#  push:
+
+
+jobs:
+
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write # need this for OIDC
+      contents: read
+
+    # accommodating monorepo, this sets the working directory at the job level, for multi repo, defaults to "."
+    defaults:
+      run:
+        working-directory: .
+
+    # important to specify the environment here so workflow knows where to deploy your artifact to and where to extract your secrets.
+    # default environment to "dev" if it is not passed in through workflow_dispatch manual trigger
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+
+    # only run this job for auto trigger by PR merge, if manual trigger for other environments than dev,
+    # no need to run this job as the image will be pulled and promoted to envs higher than dev
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@248ae51c2e8cc9622ecf50685c8bf7150c6e8813
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+      - name: Checkout Code
+        uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
+
+      - name: Setup jdk
+        uses: actions/setup-java@2506d21b7426d2b544f65d027f277ead4c5f6a9f
+        with:
+          java-version: 17
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn clean install --file pom.xml
+
+      - name: Deploy to Lambda function
+        uses: appleboy/lambda-action@master
+        with:
+          # we have to use access key and secret key here, IAM role didn't work
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: chat
+          zip_file: target/openai-api-chat-0.0.1-SNAPSHOT-aws.jar
