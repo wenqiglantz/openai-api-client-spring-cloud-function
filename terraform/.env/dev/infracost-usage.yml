@@ -6,12 +6,16 @@ version: 0.1
 resource_type_default_usage:
 
   aws_lambda_function:
-    monthly_requests: 1000 # Monthly requests to the Lambda function.
-    request_duration_ms: 1000 # Average duration of each request in milliseconds.
+    monthly_requests: 1000000       # Monthly requests to the Lambda function.
+    request_duration_ms: 1000       # Average duration of each request in milliseconds.
 
   aws_cloudwatch_log_group:
-    storage_gb: 1                   # Total data stored by CloudWatch logs in GB.
-    monthly_data_ingested_gb: 1      # Monthly data ingested by CloudWatch logs in GB.
-    monthly_data_scanned_gb: 1     # Monthly data scanned by CloudWatch logs insights in GB.
+    storage_gb: 10                  # Total data stored by CloudWatch logs in GB.
+    monthly_data_ingested_gb: 10    # Monthly data ingested by CloudWatch logs in GB.
+    monthly_data_scanned_gb: 10     # Monthly data scanned by CloudWatch logs insights in GB.
+
+  aws_apigatewayv2_api:
+    monthly_requests: 1000000       # Monthly requests to the HTTP API Gateway.
+    request_size_kb: 2              # Average request size sent to the HTTP API Gateway in KB. Requests are metered in 512KB increments, maximum size is 10MB.
 
 resource_usage:
