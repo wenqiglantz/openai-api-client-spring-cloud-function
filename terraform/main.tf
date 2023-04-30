@@ -19,11 +19,10 @@ data "aws_caller_identity" "current" {}
 #######################################
 module "lambda" {
   source   = "terraform-aws-modules/lambda/aws"
-  for_each = var.lambda_functions
 
-  function_name           = each.key
-  runtime                 = each.value.runtime
-  handler                 = each.value.handler
+  function_name           = var.lambda_function.function_name
+  runtime                 = var.lambda_function.runtime
+  handler                 = var.lambda_function.handler
   create_package          = false
   snap_start              = true
   publish                 = true
@@ -38,10 +37,10 @@ module "lambda" {
   #  }
 
   environment_variables = {
-    SPRING_CLOUD_FUNCTION_DEFINITION = each.value.function_name_variable
+    SPRING_CLOUD_FUNCTION_DEFINITION = var.lambda_function.function_name_variable
   }
-  ephemeral_storage_size = each.value.ephemeral_storage
-  memory_size            = each.value.memory_size
+  ephemeral_storage_size = var.lambda_function.ephemeral_storage
+  memory_size            = var.lambda_function.memory_size
   package_type           = "Zip"
   timeout                = "15"
 }
@@ -51,7 +50,6 @@ module "lambda" {
 #######################################
 module "apigatewayv2" {
   source     = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/apigatewayv2?ref=main"
-  for_each   = var.lambda_functions
   aws_region = var.aws_region
 
   open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
@@ -63,5 +61,5 @@ module "apigatewayv2" {
   api_gateway_stage_name             = var.api_gateway_stage_name
   api_gw_log_group_retention_in_days = var.api_gw_log_group_retention_in_days
   stage_variables                    = var.stage_variables
-  lambda_function                    = each.key
+  lambda_function                    = var.lambda_function.function_name
 }

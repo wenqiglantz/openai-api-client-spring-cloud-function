@@ -9,17 +9,16 @@ variable "open_api_spec" {
   default     = ""
 }
 
-variable "lambda_functions" {
-  description = "Map of Lambda function details"
+variable "lambda_function" {
+  description = "Lambda function details"
   type        = map(any)
   default     = {
-    function_name = {
-      runtime                = "java17"
-      handler                = "org.springframework.cloud.function.adapter.aws.FunctionInvoker"
-      ephemeral_storage      = "512"
-      memory_size            = "128"
-      function_name_variable = "chat"
-    }
+    function_name          = "chat"
+    runtime                = "java17"
+    handler                = "org.springframework.cloud.function.adapter.aws.FunctionInvoker"
+    ephemeral_storage      = "512"
+    memory_size            = "128"
+    function_name_variable = "chat"
   }
 }
 
