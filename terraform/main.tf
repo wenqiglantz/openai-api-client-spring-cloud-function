@@ -18,7 +18,7 @@ data "aws_caller_identity" "current" {}
 # lambda_function
 #######################################
 module "lambda" {
-  source = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/lambda-java?ref=main"
+  source = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/lambda_java?ref=main"
 
   lambda_code_path             = var.lambda_code_path
   lambda_archive_path          = var.lambda_archive_path
