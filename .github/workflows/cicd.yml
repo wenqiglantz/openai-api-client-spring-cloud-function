@@ -60,5 +60,5 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
-          function_name: chat
+          function_name: chat-java17-snapstart
           zip_file: target/openai-api-chat-0.0.1-SNAPSHOT-aws.jar
