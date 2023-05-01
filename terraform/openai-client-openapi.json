@@ -17,8 +17,7 @@
           "type" : "aws_proxy",
           "httpMethod" : "POST",
           "uri" : "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${aws_account_id}:function:chat-java17-snapstart/invocations",
-          "connectionType" : "INTERNET",
-          "timeoutInMillis" : 30000
+          "connectionType" : "INTERNET"
         }
       }
     }
