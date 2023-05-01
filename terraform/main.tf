@@ -49,7 +49,6 @@ module "apigatewayv2" {
   aws_region = var.aws_region
 
   open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
-    aws_region           = var.aws_region,
     qualified_invoke_arn = module.lambda.qualified_invoke_arn
   })
   http_api_gateway_name              = var.http_api_gateway_name
