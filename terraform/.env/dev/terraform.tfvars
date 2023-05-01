@@ -6,8 +6,8 @@ api_gw_log_group_retention_in_days = 7
 stage_variables                    = {}
 route_key                          = "POST /chat-java17-snapstart"
 
-lambda_code_file             = "../target/openai-api-chat-0.0.1-SNAPSHOT-aws.jar"
-lambda_archive_path          = "../target/openai-api-chat-0.0.1-SNAPSHOT-aws.zip"
+lambda_code_file             = "./openai-api-chat-0.0.1-SNAPSHOT-aws.jar"
+lambda_archive_path          = "./openai-api-chat-0.0.1-SNAPSHOT-aws.zip"
 resource_name_prefix         = "chat"
 lambda_log_retention_in_days = 7
 lambda_function              = {
