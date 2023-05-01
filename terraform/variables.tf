@@ -43,6 +43,8 @@ variable "lambda_function" {
     ephemeral_storage      = "512"
     memory_size            = "128"
     function_name_variable = "chat"
+    timeout                = "15"
+    architecture           = "arm64"
   }
 }
 
