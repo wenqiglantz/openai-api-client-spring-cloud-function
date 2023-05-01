@@ -3,11 +3,11 @@ variable "aws_region" {
   type        = string
 }
 
-variable "open_api_spec" {
-  type        = any
-  description = "OpenAPI Spec"
-  default     = ""
-}
+#variable "open_api_spec" {
+#  type        = any
+#  description = "OpenAPI Spec"
+#  default     = ""
+#}
 
 variable "resource_name_prefix" {
   type        = string
