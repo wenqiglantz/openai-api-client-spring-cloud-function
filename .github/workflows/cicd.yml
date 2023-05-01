@@ -41,14 +41,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@d0651293c4a5a52e711f25b41b05b2212f385d28
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@e81a89b1732b9c48d79cd809d8d81d79c4647a18 # v2.1.0
-        with:
-          platforms: arm64, amd64 # By default QEMU will create almost a dozen vm’s. Limit it to just the architectures we care about.
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4b4e9c3e2d4531116a6f8ba8e71fc6e2cb6e6c8c # v2.5.0
-
       - name: Setup jdk
         uses: actions/setup-java@ddb82ce8a6ecf5ac3e80c3184839e6661546e4aa
         with:

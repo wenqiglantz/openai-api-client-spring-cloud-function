@@ -17,5 +17,4 @@ lambda_function              = {
   ephemeral_storage      = "512"
   memory_size            = "512"
   timeout                = "15"
-  architecture           = "arm64"
 }
