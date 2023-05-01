@@ -33,6 +33,7 @@ module "lambda" {
 module "apigatewayv2" {
   source     = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/apigatewayv2?ref=main"
   aws_region = var.aws_region
+  depends_on = [module.lambda]
 
   open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
     aws_region     = var.aws_region,
