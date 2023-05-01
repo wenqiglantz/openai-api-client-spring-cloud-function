@@ -1,4 +1,4 @@
-aws_region                         = "eu-west-1"
+aws_region                         = "us-east-1"
 http_api_gateway_name              = "openai-api-client"
 api_gateway_stage_name             = "dev"
 description                        = "openai-api-client"
