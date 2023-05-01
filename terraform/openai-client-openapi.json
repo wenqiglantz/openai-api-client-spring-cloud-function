@@ -1,0 +1,27 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "openai-api-client",
+    "version" : "2023-04-30 00:45:35UTC"
+  },
+  "paths" : {
+    "/chat-java17-snapstart" : {
+      "post" : {
+        "responses" : {
+          "default" : {
+            "description" : "Default response for POST /chat-java17-snapstart"
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "payloadFormatVersion" : "2.0",
+          "type" : "aws_proxy",
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${aws_account_id}:function:chat/invocations",
+          "connectionType" : "INTERNET",
+          "timeoutInMillis" : 30000
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-importexport-version" : "1.0"
+}

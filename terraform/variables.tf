@@ -3,11 +3,11 @@ variable "aws_region" {
   type        = string
 }
 
-#variable "open_api_spec" {
-#  type        = any
-#  description = "OpenAPI Spec"
-#  default     = ""
-#}
+variable "open_api_spec" {
+  type        = any
+  description = "OpenAPI Spec"
+  default     = ""
+}
 
 variable "resource_name_prefix" {
   type        = string
@@ -74,10 +74,4 @@ variable "stage_variables" {
   description = "API Gateway stage variables"
   type        = map(any)
   default     = {}
-}
-
-variable "route_key" {
-  description = "Route key"
-  type        = string
-  default     = ""
 }

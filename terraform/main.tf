@@ -12,7 +12,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-#data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {}
 
 #######################################
 # lambda_function
@@ -34,15 +34,14 @@ module "apigatewayv2" {
   source     = "github.com/wenqiglantz/reusable-workflows-modules//terraform/modules/apigatewayv2?ref=main"
   aws_region = var.aws_region
 
-#  open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
-#    aws_region     = var.aws_region,
-#    aws_account_id = data.aws_caller_identity.current.account_id
-#  })
+  open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
+    aws_region     = var.aws_region,
+    aws_account_id = data.aws_caller_identity.current.account_id
+  })
   http_api_gateway_name              = var.http_api_gateway_name
   description                        = var.description
   api_gateway_stage_name             = var.api_gateway_stage_name
   api_gw_log_group_retention_in_days = var.api_gw_log_group_retention_in_days
   stage_variables                    = var.stage_variables
   lambda_function                    = var.lambda_function.function_name
-  route_key                          = var.route_key
 }

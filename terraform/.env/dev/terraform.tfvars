@@ -4,7 +4,6 @@ api_gateway_stage_name             = "dev"
 description                        = "openai-api-client"
 api_gw_log_group_retention_in_days = 7
 stage_variables                    = {}
-route_key                          = "POST /chat-java17-snapstart"
 
 lambda_code_file             = "./openai-api-chat-0.0.1-SNAPSHOT-aws.jar"
 lambda_archive_path          = "./openai-api-chat-0.0.1-SNAPSHOT-aws.zip"
