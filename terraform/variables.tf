@@ -75,3 +75,9 @@ variable "stage_variables" {
   type        = map(any)
   default     = {}
 }
+
+variable "route_key" {
+  description = "Route key"
+  type        = string
+  default     = ""
+}

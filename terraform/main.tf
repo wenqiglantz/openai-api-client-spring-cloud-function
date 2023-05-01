@@ -44,4 +44,5 @@ module "apigatewayv2" {
   api_gw_log_group_retention_in_days = var.api_gw_log_group_retention_in_days
   stage_variables                    = var.stage_variables
   lambda_function                    = var.lambda_function.function_name
+  route_key                          = var.route_key
 }
