@@ -26,7 +26,7 @@ provider "aws" {
   }
 }
 
-data "aws_caller_identity" "current" {}
+#data "aws_caller_identity" "current" {}
 
 #######################################
 # lambda_function
@@ -49,8 +49,8 @@ module "apigatewayv2" {
   aws_region = var.aws_region
 
   open_api_spec = templatefile("${path.root}/openai-client-openapi.json", {
-    aws_region     = var.aws_region,
-    aws_account_id = data.aws_caller_identity.current.account_id
+    aws_region           = var.aws_region,
+    qualified_invoke_arn = module.lambda.qualified_invoke_arn
   })
   http_api_gateway_name              = var.http_api_gateway_name
   description                        = var.description
