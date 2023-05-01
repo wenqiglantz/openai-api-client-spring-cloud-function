@@ -2,14 +2,28 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "4.65.0"
+      version = ">= 4.63"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.4.3"
+    }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "2.3.0"
     }
   }
-  required_version = "~> 1.4.0"
 }
 
 provider "aws" {
   region = var.aws_region
+  # default tags per https://registry.terraform.io/providers/hashicorp/aws/latest/docs#default_tags-configuration-block
+  default_tags {
+    tags = {
+      env       = var.environment
+      ManagedBy = "Terraform"
+    }
+  }
 }
 
 data "aws_caller_identity" "current" {}

@@ -3,6 +3,12 @@ variable "aws_region" {
   type        = string
 }
 
+variable "environment" {
+  description = "Deployment environment"
+  type        = string
+  default     = "dev"
+}
+
 variable "open_api_spec" {
   type        = any
   description = "OpenAPI Spec"
