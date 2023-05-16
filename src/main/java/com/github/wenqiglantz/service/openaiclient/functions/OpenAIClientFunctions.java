@@ -9,6 +9,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import software.amazon.lambda.powertools.tracing.CaptureMode;
+import software.amazon.lambda.powertools.tracing.Tracing;
+
 import java.util.function.Function;
 
 @Configuration
@@ -20,6 +23,7 @@ public class OpenAIClientFunctions {
     private final OpenAIClientService openAIClientService;
 
     @Bean
+    @Tracing(captureMode = CaptureMode.RESPONSE_AND_ERROR)
     public Function<ChatRequest, ChatGPTResponse> chat() {
         return (request) -> {
             return openAIClientService.chat(request);
